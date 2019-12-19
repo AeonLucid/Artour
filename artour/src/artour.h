@@ -1,6 +1,8 @@
 #ifndef ARTOUR_H_
 #define ARTOUR_H_
 
-bool ArtourInit();
+#include <jni.h>
+
+bool ArtourInit(JNIEnv *env);
 
 #endif // ARTOUR_H_

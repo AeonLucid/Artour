@@ -1,3 +1,4 @@
+#include <art/art_runtime.h>
 #include "artour.h"
 #include "android/target.h"
 #include "art/symbols.h"
@@ -11,6 +12,13 @@ INIT void __initialize() {
     art::jit::initSymbols();
 }
 
-bool ArtourInit() {
+bool ArtourInit(JNIEnv *env) {
+    if (!art::ArtRuntime::Get()->Initialize(env)) {
+        LOGE("Failed to initialize ArtRuntime.");
+        return false;
+    }
+
+    LOGI("Initialized ArtRuntime, running on SDK %u.", SDK_INT);
+
     return true;
 }

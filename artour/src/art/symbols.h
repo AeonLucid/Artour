@@ -15,6 +15,9 @@ namespace art {
             static const char *LibArtPath;
             static const char *LibJitPath;
 
+            static art::jit::JitCompiler **JitCompilerHandleGlobal;
+            static art::jit::JitCompiler *JitCompilerHandle;
+
             static t_jitLoad JitLoad;
             static t_jitCompileMethod JitCompileMethod;
 

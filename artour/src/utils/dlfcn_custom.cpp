@@ -79,7 +79,7 @@ void *dlopen_compat(const char *path, int flags, bool *is_fake) {
             return nullptr;
         }
 
-        elf = reinterpret_cast<Elf32_Ehdr *>(mmap(nullptr, lib_size, PROT_READ, MAP_SHARED, fd, 0));
+        elf = reinterpret_cast<Elf_Ehdr *>(mmap(nullptr, lib_size, PROT_READ, MAP_SHARED, fd, 0));
         close(fd);
 
         if (elf == MAP_FAILED) {
@@ -108,7 +108,7 @@ void *dlopen_compat(const char *path, int flags, bool *is_fake) {
                         break;
                     }
 
-                    summary->dynsym = static_cast<Elf32_Sym *>(malloc(section_header->sh_size));
+                    summary->dynsym = static_cast<Elf_Sym *>(malloc(section_header->sh_size));
                     summary->dynsym_num = section_header->sh_size / sizeof(Elf_Sym);
 
                     if (!summary->dynsym) {
